@@ -1,0 +1,78 @@
+Bundesamt für Meteorologie und Klimatologie MeteoSchweiz
+MeteoSchweiz / MeteoSuisse / MeteoSvizzera / MeteoSwiss
+
+STN      YYYYMMDDHHMI  fkl010z0  fkl010z1  dkl010z0  dkl010z1  fkl010z3
+
+
+STN    Stationsnummer (siehe unten)
+YYYY   Jahr
+MM     Monat
+DD     Tag
+HH     Stunde
+MI     Minuten
+
+Zeitangaben in UTC:      0040 UTC = 02:40 Sommerzeit
+                                  = 01:40 Winterzeit
+
+10000000  Fehlende numerische Werte
+/         Fehlende Textwerte
+
+Stationen:
+----------
+
+STN       Name                       Länge/Breite             KM-Koordinaten  Höhe m.ü.M
+13        Château-d'Oex                7°08'/ 46°29'          577041/ 147655  1028
+38        Le Moléson                   7°01'/ 46°33'          567719/ 155077  1974
+748       Marsens                      7°04'/ 46°39'          571758/ 167317   714
+850       Oron                         6°51'/ 46°34'          555506/ 158053   828
+32        Payerne                      6°57'/ 46°49'          562131/ 184611   490
+309       Les Charbonnières            6°19'/ 46°40'          513821/ 169387  1045
+308       Mathod                       6°34'/ 46°44'          533458/ 176567   435
+762       Villars-Tiercelin            6°43'/ 46°37'          544198/ 163651   859
+77        Bullet / La Frétaz           6°35'/ 46°50'          534225/ 188081  1205
+521       Col des Mosses               7°06'/ 46°24'          573818/ 137852  1412
+37        Aigle                        6°55'/ 46°20'          560405/ 130713   381
+268       Bouveret                     6°51'/ 46°24'          555264/ 138175   374
+205       Vevey / Corseaux             6°49'/ 46°28'          552106/ 146847   405
+61        Pully                        6°40'/ 46°31'          540819/ 151510   456
+331       St-Prex                      6°27'/ 46°29'          523549/ 148525   425
+849       Bière                        6°21'/ 46°31'          515888/ 153210   684
+31        La Dôle                      6°06'/ 46°25'          497060/ 142372  1670
+76        Nyon / Changins              6°14'/ 46°24'          506878/ 139573   458
+58        Genève / Cointrin            6°08'/ 46°15'          498905/ 122632   411
+
+
+Parameter:
+----------
+
+PAR       Einheit                    Beschreibung
+fkl010z0  Meter/Sekunde              Windgeschwindigkeit skalar; Zehnminutenmittel
+fkl010z1  Meter/Sekunde              Böenspitze (Sekundenböe); Maximum
+dkl010z0  Grad                       Windrichtung; Zehnminutenmittel
+dkl010z1  Grad                       Windrichtung bei Böenspitze (Sekundenböe); Zehnminuten-Intervall
+fkl010z3  Meter/Sekunde              Böenspitze (3-Sekundenböe); Maximum
+
+
+Quellenangaben:
+---------------
+
+von          bis        STN    Dateneigner               PAR
+08.02.2012 -            13     MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+14.10.2008 -            38     MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+01.04.2014 -            748    MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+12.01.2012 -            850    MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+05.12.2006 -            32     MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+23.09.2014 -            309    MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+20.08.2013 -            308    MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+13.03.2014 -            762    MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+01.01.1978 -            77     MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+10.04.2015 -            521    MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+01.11.1880 -            37     MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+21.08.2012 -            268    MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+07.09.2015 -            205    MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+01.01.1978 -            61     MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+06.12.2011 -            331    MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+16.12.2009 -            849    MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+14.12.2006 -            31     MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+01.06.1964 -            76     MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
+12.06.2009 -            58     MeteoSchweiz              fkl010z0, fkl010z1, dkl010z0, fkl010z3
