@@ -2,3 +2,4 @@
 figures/
 ./core
 core
+*.npz
