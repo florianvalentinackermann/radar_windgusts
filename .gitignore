@@ -3,3 +3,4 @@ figures/
 ./core
 core
 *.npz
+trt_df_*.pkl
