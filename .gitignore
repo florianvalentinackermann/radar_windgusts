@@ -4,3 +4,5 @@ figures/
 core
 *.npz
 trt_df_*.pkl
+wind_reports_2021_2023.json
+*.png
