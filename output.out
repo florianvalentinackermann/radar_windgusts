@@ -1,0 +1,41 @@
+
+## You are using the Python ARM Radar Toolkit (Py-ART), an open source
+## library for working with weather radar data. Py-ART is partly
+## supported by the U.S. Department of Energy as part of the Atmospheric
+## Radiation Measurement (ARM) Climate Research Facility, an Office of
+## Science user facility.
+##
+## If you use this software to prepare a publication, please cite:
+##
+##     JJ Helmus and SM Collis, JORS 2016, doi: 10.5334/jors.119
+
+Pysteps configuration file found at: /scratch/mch/fackerma/miniforge3/envs/testenv/lib/python3.12/site-packages/pysteps/pystepsrc
+
+WGS84: 
+[46.54620053012867, 7.017760746224894, 2024.97379732]
+LV03: 
+[567719, 155077, 1974]
+Reading files
+py_decoder DBG verb=0
+py_decoder DBG verbl=0
+py_decoder DBG verb=0
+py_decoder DBG verbl=0
+py_decoder DBG verb=0
+py_decoder DBG verbl=0
+py_decoder DBG verb=0
+py_decoder DBG verbl=0
+py_decoder DBG verb=0
+py_decoder DBG verbl=0
+py_decoder DBG verb=0
+py_decoder DBG verbl=0
+py_decoder DBG verb=0
+py_decoder DBG verbl=0
+py_decoder DBG verb=0
+py_decoder DBG verbl=0
+py_decoder DBG verb=0
+py_decoder DBG verbl=0
+swap product table data ......
+py_decoder DBG verb=0
+py_decoder DBG verbl=0
+Start generating figure
+Finished plot

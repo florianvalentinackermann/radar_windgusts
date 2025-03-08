@@ -1,0 +1,10 @@
+/users/fackerma/newproject1/fig.py:399: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+  headers = pd.read_csv(file).iloc[7:8].iloc[0][0].split()
+/users/fackerma/newproject1/fig.py:406: DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  trt_df.loc[n, 'traj_ID'] = int(t[0].values)
+/users/fackerma/newproject1/fig.py:407: DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  trt_df.loc[n, 'time'] = int(t[1].values)
+/users/fackerma/newproject1/fig.py:427: DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  cells[rr, cc] = int(t[0].values)
+/scratch/mch/fackerma/miniforge3/envs/testenv/lib/python3.12/site-packages/pyart/aux_io/metranet_reader.py:142: UserWarning: Invalid reader name or C library not available, using python (default) instead
+  warn('Invalid reader name or C library not available,' +
