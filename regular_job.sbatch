@@ -1,5 +1,5 @@
 #!/bin/bash -l
-#SBATCH --job-name="Testfile_trt_first_run"
+#SBATCH --job-name="Gust Marker"
 #SBATCH --time=08:00:00
 #SBATCH --output=slurm/output.out
 #SBATCH --error=slurm/error.err
@@ -10,9 +10,12 @@
 #SBATCH --mem-per-cpu=64G
 #SBATCH --partition=postproc
 #SBATCH --account=msclim
+#SBATCH --mail-user=florian.ackermann@students.unibe.ch  
+#SBATCH --mail-type=END,FAIL  
 
 conda activate testenv
 
 cd /users/fackerma/newproject1/
 
-python -u Testfile_trt_first_run.py
+python -u TRTProcessing_regularjob.py
+

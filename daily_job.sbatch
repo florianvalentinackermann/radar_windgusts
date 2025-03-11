@@ -1,8 +1,8 @@
 #!/bin/bash -l
-#SBATCH --job-name="some_name"
+#SBATCH --job-name="Wind daily"
 #SBATCH --time=08:00:00
-#SBATCH --output=output-%a.out
-#SBATCH --error=error-%a.err
+#SBATCH --output=slurm/output-%a.out
+#SBATCH --error=slurm/error-%a.err
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
@@ -10,10 +10,12 @@
 #SBATCH --mem-per-cpu=64G
 #SBATCH --partition=postproc
 #SBATCH --account=msclim
-#SBATCH -a 0-100:1%10
+#SBATCH -a 0-9:1%10
+#SBATCH --mail-user=florian.ackermann@students.unibe.ch  
+#SBATCH --mail-type=END,FAIL  
 
-conda activate yourenv
+conda activate testenv
 
-cd /your/code/folder
+cd /users/fackerma/newproject1/
 
-python -u daily_processing.py  -d $SLURM_ARRAY_TASK_ID
+python -u TRTProcessing_dailyjob.py  -d $SLURM_ARRAY_TASK_ID
