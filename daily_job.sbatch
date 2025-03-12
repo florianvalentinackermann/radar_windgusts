@@ -12,7 +12,7 @@
 #SBATCH --account=msclim
 #SBATCH -a 0-9:1%10
 #SBATCH --mail-user=florian.ackermann@students.unibe.ch  
-#SBATCH --mail-type=END,FAIL  
+#SBATCH --mail-type=START,END,FAIL  
 
 conda activate testenv
 

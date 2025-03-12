@@ -1,6 +1,6 @@
 #!/bin/bash -l
 #SBATCH --job-name="Gust Marker"
-#SBATCH --time=08:00:00
+#SBATCH --time=12:00:00
 #SBATCH --output=slurm/output.out
 #SBATCH --error=slurm/error.err
 #SBATCH --nodes=1
@@ -11,7 +11,7 @@
 #SBATCH --partition=postproc
 #SBATCH --account=msclim
 #SBATCH --mail-user=florian.ackermann@students.unibe.ch  
-#SBATCH --mail-type=END,FAIL  
+#SBATCH --mail-type=START,END,FAIL  
 
 conda activate testenv
 
