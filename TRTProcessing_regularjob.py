@@ -551,13 +551,13 @@ def process_gust_markers(valid_date3, valid_time3, extraction_dir):
 
 
 # Define the date range
-start_date = datetime.strptime('2019-07-01', '%Y-%m-%d')
-end_date = datetime.strptime('2019-07-31', '%Y-%m-%d')  
+start_date = datetime.strptime('2019-09-01', '%Y-%m-%d')
+end_date = datetime.strptime('2019-10-31', '%Y-%m-%d')  
 time_delta = timedelta(minutes=5)
 
 # Define paths
 extraction_dir = "/scratch/mch/fackerma/orders/TRT_Unzip/"
-output_dir = "/scratch/mch/fackerma/orders/trt_df_testset1/"
+output_dir = "/scratch/mch/fackerma/orders/trt_processing_testorder_2/"
 
 current_date = start_date
 while current_date <= end_date:
