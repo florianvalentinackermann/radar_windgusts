@@ -565,7 +565,7 @@ daylist = [(START_DATE + timedelta(days=i)).strftime('%Y-%m-%d')
 
 # Define paths
 EXTRACTION_DIR = "/scratch/mch/fackerma/orders/TRT_Unzip/"
-OUTPUT_DIR = "/scratch/mch/fackerma/orders/trt_processing_testorder_2/"
+OUTPUT_DIR = "/scratch/mch/fackerma/orders/TRT_processing_1/trt_processing_testorder_2021"
 
 def process_day(selected_date):
     """Process data for a specific day."""
