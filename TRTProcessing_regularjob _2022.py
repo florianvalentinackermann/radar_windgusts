@@ -557,7 +557,7 @@ time_delta = timedelta(minutes=5)
 
 # Define paths
 extraction_dir = "/scratch/mch/fackerma/orders/TRT_Unzip/"
-output_dir = "/scratch/mch/fackerma/orders/TRT_processing_1/trt_processing_testorder_2021"
+output_dir = "/scratch/mch/fackerma/orders/TRT_processing_1/trt_processing_testorder_2022"
 
 current_date = start_date
 while current_date <= end_date:
