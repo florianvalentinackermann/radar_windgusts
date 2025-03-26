@@ -2,14 +2,14 @@ import pandas as pd
 from pathlib import Path
 
 valid_times = []
-base_path = Path("/scratch/mch/fackerma/orders/TRT_processing_1/")
+base_path = Path("/scratch/mch/fackerma/orders/TRT_processing_2/")
 total_files = 0
 files_with_gust = 0
 
 print("Starting processing...\n")
 
 for year in range(2019, 2024):
-    year_dir = base_path / f"trt_processing_testorder_{year}"
+    year_dir = base_path / f"{year}"
     
     if not year_dir.exists():
         print(f"⚠️  Missing directory: {year_dir}")

@@ -17,5 +17,5 @@ conda activate testenv
 
 cd /users/fackerma/newproject1/
 
-python -u Extracted_dates.py
+python -u Extracted_metainfo.py
 
