@@ -1,0 +1,2 @@
+/scratch/mch/fackerma/miniforge3/envs/testenv/lib/python3.12/site-packages/geopandas/array.py:1638: UserWarning: CRS not set for some of the concatenation inputs. Setting output's CRS as WGS 84 (the single non-null crs provided).
+  return GeometryArray(data, crs=_get_common_crs(to_concat))
