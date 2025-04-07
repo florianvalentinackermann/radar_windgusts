@@ -1,6 +1,6 @@
 #!/bin/bash -l
-#SBATCH --job-name="Gust Marker"
-#SBATCH --time=12:00:00
+#SBATCH --job-name="Model Setup"
+#SBATCH --time=24:00:00
 #SBATCH --output=slurm/output.out
 #SBATCH --error=slurm/error.err
 #SBATCH --nodes=1
@@ -17,5 +17,5 @@ conda activate testenv
 
 cd /users/fackerma/newproject1/
 
-python -u Speed_Density.py
+python -u Model_Setup_2.py
 
