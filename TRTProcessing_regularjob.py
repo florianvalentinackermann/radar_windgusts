@@ -260,6 +260,7 @@ def transform_c(chx,chy):
 from datetime import datetime, timedelta, timezone
 
 
+
 # Define TRT reading function
 def read_TRT(path, file=0, ttime=0):
     """
@@ -335,6 +336,29 @@ def read_TRT(path, file=0, ttime=0):
             trt_df.loc[n, 'time'] = int(t[1].values)
             trt_df.loc[n, 'lon'] = t[2].values.astype(float)
             trt_df.loc[n, 'lat'] = t[3].values.astype(float)
+            trt_df.loc[n, 'ell_L'] = t[4].values.astype(float)
+            trt_df.loc[n, 'ell_S'] = t[5].values.astype(float)
+            trt_df.loc[n, 'ell_or'] = t[6].values.astype(float)
+            trt_df.loc[n, 'area'] = t[7].values.astype(float)
+            trt_df.loc[n, 'vel_x'] = t[8].values.astype(float)
+            trt_df.loc[n, 'vel_y'] = t[9].values.astype(float)
+            trt_df.loc[n, 'det'] = t[10].values.astype(float)
+            trt_df.loc[n, 'RANKr'] = t[11].values.astype(float)
+            trt_df.loc[n, 'CG-'] = t[12].values.astype(float)
+            trt_df.loc[n, 'CG+'] = t[13].values.astype(float)
+            trt_df.loc[n, 'CG'] = t[14].values.astype(float)
+            trt_df.loc[n, '%CG+'] = t[15].values.astype(float)
+            trt_df.loc[n, 'ET45'] = t[16].values.astype(float)
+            trt_df.loc[n, 'ET45m'] = t[17].values.astype(float)
+            trt_df.loc[n, 'ET15'] = t[18].values.astype(float)
+            trt_df.loc[n, 'ET15m'] = t[19].values.astype(float)
+            trt_df.loc[n, 'VIL'] = t[20].values.astype(float)
+            trt_df.loc[n, 'maxH'] = t[21].values.astype(float)
+            trt_df.loc[n, 'maxHm'] = t[22].values.astype(float)
+            trt_df.loc[n, 'POH'] = t[23].values.astype(float)
+            trt_df.loc[n, 'MESHS'] = t[24].values.astype(float)
+            trt_df.loc[n, 'Dvel_x'] = t[25].values.astype(float)
+            trt_df.loc[n, 'Dvel_y'] = t[26].values.astype(float)
             chx, chy = c_transform([trt_df.loc[n, 'lon']], [trt_df.loc[n, 'lat']])
             ix = np.round((chx - o_x) / 1000).astype(int)
             if ix >= 710: ix = 709
