@@ -17,5 +17,5 @@ conda activate testenv
 
 cd /users/fackerma/newproject1/
 
-python -u Model_Setup_2.py
+python -u TRTProcessing_age.py
 
