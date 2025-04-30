@@ -333,7 +333,7 @@ def read_TRT(path, file=0, ttime=0):
             # ... (existing code remains the same)
             t = data.iloc[n].str.split(';', expand=True)
             trt_df.loc[n, 'traj_ID'] = int(t[0].values)
-            trt_df.loc[n, 'yyyymmddHHMM'] = int(t[1].values)
+            trt_df.loc[n, 'yyyymmddHHMM'] = str(t[1].values[0])
             trt_df.loc[n, 'lon'] = t[2].values.astype(float)
             trt_df.loc[n, 'lat'] = t[3].values.astype(float)
             trt_df.loc[n, 'ell_L'] = t[4].values.astype(float)
@@ -392,6 +392,140 @@ def read_TRT(path, file=0, ttime=0):
     return trt_df, [cells], timelist
 
 
+
+# Define TRT reading function
+def read_TRT(path, file=0, ttime=0):
+    """
+    Read .trt or .json file containing TRT output
+    Returns dataframe with attributes and gridded TRT cells
+
+    Parameters
+    ----------
+
+    path : string
+        path, where to look for files.
+    file: string
+        filename
+    ttime : string
+        timestep to find files for.
+    Requires either filename or timestep
+   
+    Returns
+    -------
+    trt_df : dataframe
+        TRT cells and attributes of the timestep.
+    cells: list
+        Gridded TRT cells per timestep
+    timelist: list
+        timesteps
+
+    """
+   
+    o_x=255000
+    o_y=-160000
+    lx=710; ly=640
+    cells=np.zeros([ly,lx])
+    if file == 0:
+        file=glob.glob(path["lomdata"]+'*'+ttime+'*json*')
+        if len(file)>0: flag=1
+        else:
+            file=glob.glob(path["lomdata"]+'*'+ttime+'*'+'.trt')[0]
+            flag=0
+    else:
+        if 'json' in file: flag=1; ttime=file[-20:-11]
+        else: flag=0; ttime=file[-15:-6]
+        file=[file]
+   
+    if flag==1:
+        with open(file[0]) as f: gj = geojson.FeatureCollection(gs.load(f))
+        trt_df=geopandas.GeoDataFrame.from_features(gj['features'])
+        if len(trt_df)>0:
+          # print(trt_df.lon.values.astype(float))
+          chx, chy = c_transform(trt_df.lon.values.astype(float),trt_df.lat.values.astype(float))
+          trt_df['chx']=chx.astype(str); trt_df['chy']=chy.astype(str)
+          for n in range(len(trt_df)):
+              lon,lat=trt_df.iloc[n].geometry.boundary.xy
+              # print(trt_df.iloc[n])
+              chx, chy = c_transform(lon,lat)
+              # trt_df.iloc[n]['chx']=chx.astype(str); trt_df.iloc[n]['chy']=chy.astype(str)
+              #transform.c_transform(trt_df.iloc[n].lon.values,trt_df.iloc[n].lat.values)
+              ix=np.round((chx-o_x)/1000).astype(int)
+              iy=np.round((chy-o_y)/1000).astype(int)
+              rr, cc = polygon(iy, ix, cells.shape)
+              # print(lat,lon,chx,chy,ix,iy)
+              cells[rr,cc]=int(trt_df.traj_ID.iloc[n]);
+        else: cells=[]
+    else:
+        data = pd.read_csv(file).iloc[8:]
+        headers = pd.read_csv(file).iloc[7:8].iloc[0][0].split()
+        trt_df = pd.DataFrame()
+        geometries = []  # New list to store geometries
+
+        for n in range(len(data)):
+            # ... (existing code remains the same)
+            t = data.iloc[n].str.split(';', expand=True)
+            trt_df.loc[n, 'traj_ID'] = float(t.iloc[0, 0])
+            #trt_df.loc[n, 'yyyymmddHHMM'] = int(t[1].values)
+            trt_df.loc[n, 'yyyymmddHHMM'] = str(t[1].values[0])  # Assign as string
+            trt_df.loc[n, 'lon'] = t[2].values.astype(float)
+            trt_df.loc[n, 'lat'] = t[3].values.astype(float)
+            trt_df.loc[n, 'ell_L'] = t[4].values.astype(float)
+            trt_df.loc[n, 'ell_S'] = t[5].values.astype(float)
+            trt_df.loc[n, 'ell_or'] = t[6].values.astype(float)
+            trt_df.loc[n, 'area'] = t[7].values.astype(float)
+            trt_df.loc[n, 'vel_x'] = t[8].values.astype(float)
+            trt_df.loc[n, 'vel_y'] = t[9].values.astype(float)
+            trt_df.loc[n, 'det'] = t[10].values.astype(float)
+            trt_df.loc[n, 'RANKr'] = t[11].values.astype(float)
+            trt_df.loc[n, 'CG-'] = t[12].values.astype(float)
+            trt_df.loc[n, 'CG+'] = t[13].values.astype(float)
+            trt_df.loc[n, 'CG'] = t[14].values.astype(float)
+            trt_df.loc[n, '%CG+'] = t[15].values.astype(float)
+            trt_df.loc[n, 'ET45'] = t[16].values.astype(float)
+            trt_df.loc[n, 'ET45m'] = t[17].values.astype(float)
+            trt_df.loc[n, 'ET15'] = t[18].values.astype(float)
+            trt_df.loc[n, 'ET15m'] = t[19].values.astype(float)
+            trt_df.loc[n, 'VIL'] = t[20].values.astype(float)
+            trt_df.loc[n, 'maxH'] = t[21].values.astype(float)
+            trt_df.loc[n, 'maxHm'] = t[22].values.astype(float)
+            trt_df.loc[n, 'POH'] = t[23].values.astype(float)
+            trt_df.loc[n, 'MESHS'] = t[24].values.astype(float)
+            trt_df.loc[n, 'Dvel_x'] = t[25].values.astype(float)
+            trt_df.loc[n, 'Dvel_y'] = t[26].values.astype(float)
+            chx, chy = c_transform([trt_df.loc[n, 'lon']], [trt_df.loc[n, 'lat']])
+            ix = np.round((chx - o_x) / 1000).astype(int)
+            if ix >= 710: ix = 709
+            iy = np.round((chy - o_y) / 1000).astype(int)
+            if iy >= 640: iy = 639
+            n2 = 27
+            #if int(ttime) >= 221520631: n2 = 82
+            tt = np.array(t)[0, n2:-1]
+            tt = np.reshape(tt, [int(len(tt) / 2), 2])
+            trt_df.loc[n, 'chx'] = chx
+            trt_df.loc[n, 'chy'] = chy
+            lat = tt[:, 1].astype(float)
+            lon = tt[:, 0].astype(float)
+            chx, chy = c_transform(lon, lat)
+            ix = np.round((chx - o_x) / 1000).astype(int)
+            iy = np.round((chy - o_y) / 1000).astype(int)
+            rr, cc = polygon(iy, ix, cells.shape)
+            cells[rr, cc] = int(t[0].values)
+            # Create polygon for this cell
+            polygon_coords = list(zip(lon, lat))
+            cell_polygon = Polygon(polygon_coords)
+            geometries.append(cell_polygon)
+        
+        # Add geometry column to trt_df
+        trt_df['geometry'] = geometries
+    
+        # Convert trt_df to GeoDataFrame
+        trt_df = gpd.GeoDataFrame(trt_df, geometry='geometry', crs="EPSG:4326")
+
+    timelist=[str(ttime)]
+    return trt_df, [cells], timelist
+
+
+
 import zipfile
 
 
@@ -409,8 +543,8 @@ def process_gust_markers(valid_date3, valid_time3, extraction_dir):
                          if f.startswith(target_pattern)), None)
 
     if not trt_data_file:
-        return pd.DataFrame(columns=['geometry', 'CS Marker', 'STA Marker', 
-                                   'ESWD Marker', 'Gust_Flag'])
+        return pd.DataFrame(columns=['geometry', 'Age', 'CS Marker', 'STA Marker', 
+                                   'ESWD Marker', 'STA Speed', 'Gust_Flag'])
 
     trt_data_path = extraction_dir
     
@@ -422,15 +556,16 @@ def process_gust_markers(valid_date3, valid_time3, extraction_dir):
         # Log the error if needed (optional)
         print(f"Error reading TRT data: {e}")
         # Return an empty DataFrame with required columns
-        return pd.DataFrame(columns=['geometry', 'CS Marker', 'STA Marker', 
-                                     'ESWD Marker', 'Gust_Flag'])
+        return pd.DataFrame(columns=['geometry', 'Age', 'CS Marker', 'STA Marker', 
+                                   'ESWD Marker', 'STA Speed', 'Gust_Flag'])
     
     # Load Gust Markers dataframe
     df = pd.read_pickle("/scratch/mch/fackerma/orders/Gust_Markers/Gust_Markers_3.pkl")
         
     if trt_df.empty:
         # Return an empty DataFrame with required columns if TRT data is empty
-        empty_df = pd.DataFrame(columns=['geometry', 'CS Marker', 'STA Marker', 'ESWD Marker', 'Gust_Flag'])
+        empty_df = pd.DataFrame(columns=['geometry', 'Age', 'CS Marker', 'STA Marker', 
+                                   'ESWD Marker', 'STA Speed', 'Gust_Flag'])
         trt_df = empty_df
         return trt_df
         
@@ -438,6 +573,26 @@ def process_gust_markers(valid_date3, valid_time3, extraction_dir):
     file_path_swiss_cities = "polygons_wgs84_1000.gpkg"
     # Read the GeoPackage into a GeoDataFrame
     swiss_cities_gdf = gpd.read_file(file_path_swiss_cities)
+
+    # Ensure yyyymmddHHMM and traj_ID are strings (to avoid float conversion issues)
+    trt_df['yyyymmddHHMM'] = trt_df['yyyymmddHHMM'].astype(str)
+    trt_df['yyyymmddHHMM'] = trt_df['yyyymmddHHMM'].str.strip()  # Remove leading/trailing spaces
+        
+    trt_df['traj_ID'] = trt_df['traj_ID'].astype(str)
+
+    # Convert yyyymmddHHMM to datetime
+    trt_df['current_time'] = pd.to_datetime(trt_df['yyyymmddHHMM'], format='%Y%m%d%H%M')
+
+    # Extract birth time from the first 12 digits of traj_ID and convert to datetime
+    #trt_df['birth_time'] = pd.to_datetime(trt_df['traj_ID'].str[:12], format='%Y%m%d%H%M')
+    # Ensure traj_ID is string, extract first 12 characters, then convert to datetime
+    trt_df['birth_time'] = pd.to_datetime(trt_df['traj_ID'].astype(str).str[:12], format='%Y%m%d%H%M')
+
+    # Calculate age in minutes
+    trt_df['Age'] = (trt_df['current_time'] - trt_df['birth_time']).dt.total_seconds() / 60
+
+    # Optionally, drop helper columns
+    trt_df.drop(columns=['current_time', 'birth_time'], inplace=True)
         
     # Convert TRT DataFrame to GeoDataFrame and process buffers
     trt_gdf = GeoDataFrame(trt_df, geometry='geometry', crs="EPSG:4326")
@@ -540,6 +695,17 @@ def process_gust_markers(valid_date3, valid_time3, extraction_dir):
     trt_df['STA Marker'] = trt_df.index.map(lambda x: sta_counts.get(x, 0)).fillna(0).astype(int)
     trt_df['ESWD Marker'] = trt_df.index.map(lambda x: eswd_counts.get(x, 0)).fillna(0).astype(int)
 
+    # Initialize 'STA Speed' column
+    trt_df['STA Speed'] = None
+
+    # Collect wind speeds for each traj_ID
+    sta_speeds = matched_gusts_sta.groupby('traj_ID')['Attribute'].apply(list).to_dict()
+
+    # Map the collected wind speeds to the 'STA Speed' column
+    trt_df['STA Speed'] = trt_df['traj_ID'].map(sta_speeds)
+
+    # Convert lists with a single element to just that element
+    trt_df['STA Speed'] = trt_df['STA Speed'].apply(lambda x: x[0] if isinstance(x, list) and len(x) == 1 else x)
 
     # Create a new geometry column in trt_gdf based on lon and lat
     trt_gdf['point_geometry'] = trt_gdf.apply(lambda row: Point(row['lon'], row['lat']), axis=1)
