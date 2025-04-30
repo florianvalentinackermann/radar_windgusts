@@ -17,5 +17,5 @@ conda activate testenv
 
 cd /users/fackerma/newproject1/
 
-python -u TRTProcessing_age.py
+python -u date_extraction.py
 
