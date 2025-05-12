@@ -17,5 +17,5 @@ conda activate testenv
 
 cd /users/fackerma/newproject1/
 
-python -u date_extraction.py
+python -u Model_Setup_3.py
 

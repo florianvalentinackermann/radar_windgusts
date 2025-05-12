@@ -1,8 +1,8 @@
 #!/bin/bash -l
-#SBATCH --job-name="Date Extraction"
-#SBATCH --time=16:00:00
-#SBATCH --output=slurm/output.out
-#SBATCH --error=slurm/error.err
+#SBATCH --job-name="Model Setup"
+#SBATCH --time=38:00:00
+#SBATCH --output=slurm/output_b.out
+#SBATCH --error=slurm/error_b.err
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
@@ -17,5 +17,5 @@ conda activate testenv
 
 cd /users/fackerma/newproject1/
 
-python -u Extracted_metainfo.py
+python -u Model_Setup_3_b.py
 
