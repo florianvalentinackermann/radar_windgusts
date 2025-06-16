@@ -464,7 +464,6 @@ def read_TRT(path, file=0, ttime=0):
             # ... (existing code remains the same)
             t = data.iloc[n].str.split(';', expand=True)
             trt_df.loc[n, 'traj_ID'] = float(t.iloc[0, 0])
-            #trt_df.loc[n, 'yyyymmddHHMM'] = int(t[1].values)
             trt_df.loc[n, 'yyyymmddHHMM'] = str(t[1].values[0])  # Assign as string
             trt_df.loc[n, 'lon'] = t[2].values.astype(float)
             trt_df.loc[n, 'lat'] = t[3].values.astype(float)

@@ -1,6 +1,6 @@
 #!/bin/bash -l
-#SBATCH --job-name="Model Setup"
-#SBATCH --time=24:00:00
+#SBATCH --job-name="efs_24"
+#SBATCH --time=12:00:00
 #SBATCH --output=slurm/output.out
 #SBATCH --error=slurm/error.err
 #SBATCH --nodes=1
@@ -17,5 +17,5 @@ conda activate testenv
 
 cd /users/fackerma/newproject1/
 
-python -u Model_Setup_3_b.py
+python -u GridSearchCV.py
 
