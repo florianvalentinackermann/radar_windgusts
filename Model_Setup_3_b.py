@@ -177,6 +177,12 @@ def calculate_metrics(filtered_df, clons, clats, ZH, rad_shear, KDP):
             results['rad_shear_95th_percentile_height'].append(np.nan)
             results['rad_shear_max_height'].append(np.nan)
 
+    # Add results to DataFrame
+    for col in results:
+        filtered_df[col] = results[col]
+        
+    return filtered_df
+
 def _append_defaults(results):
     """Append default values to result lists when no valid data is found."""
     for k in results:

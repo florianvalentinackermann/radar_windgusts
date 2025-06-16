@@ -1,2 +1,6 @@
-/scratch/mch/fackerma/miniforge3/envs/testenv/lib/python3.12/site-packages/geopandas/array.py:1638: UserWarning: CRS not set for some of the concatenation inputs. Setting output's CRS as WGS 84 (the single non-null crs provided).
-  return GeometryArray(data, crs=_get_common_crs(to_concat))
+/users/fackerma/newproject1/GridSearchCV.py:20: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  df['velocity'] = np.sqrt(df['vel_x']**2 + df['vel_y']**2)
+/users/fackerma/newproject1/GridSearchCV.py:22: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  df['Z_top_smoothness'] = df['ZH_20_height'] - df['ZH_45_height']
+/users/fackerma/newproject1/GridSearchCV.py:24: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  df['CoreAspect_ratio'] = df['ZH_45_height'] / df['area']
