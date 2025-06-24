@@ -1,4 +1,5 @@
-#!/bin/bash -l
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 #SBATCH --job-name="Model Setup"
 #SBATCH --time=38:00:00
 #SBATCH --output=slurm/output_b.out
@@ -17,5 +18,5 @@ conda activate testenv
 
 cd /users/fackerma/newproject1/
 
-python -u Model_Setup_3_b.py
+python -u TRTProcessing_age.py
 

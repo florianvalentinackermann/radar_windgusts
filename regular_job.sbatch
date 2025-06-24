@@ -1,5 +1,5 @@
 #!/bin/bash -l
-#SBATCH --job-name="efs_24"
+#SBATCH --job-name="trt_proc"
 #SBATCH --time=12:00:00
 #SBATCH --output=slurm/output.out
 #SBATCH --error=slurm/error.err
@@ -17,5 +17,5 @@ conda activate testenv
 
 cd /users/fackerma/newproject1/
 
-python -u GridSearchCV.py
+python -u TRTProcessing_age.py
 

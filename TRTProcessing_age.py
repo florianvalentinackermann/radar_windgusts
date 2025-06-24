@@ -1,4 +1,3 @@
-# Import packages
 
 import pandas as pd
 import math
@@ -672,14 +671,26 @@ def process_gust_markers(valid_date3, valid_time3, extraction_dir):
     # Initialize 'STA Speed' column
     trt_df['STA Speed'] = None
 
-    # Collect wind speeds for each traj_ID
+    # Collect wind speeds and other attributes for each traj_ID
     sta_speeds = matched_gusts_sta.groupby('traj_ID')['Attribute'].apply(list).to_dict()
+    cs_attribute = matched_gusts_cs.groupby('traj_ID')['Attribute'].apply(list).to_dict()
+
+    def combine_attributes(traj_id):
+        sta = sta_speeds.get(traj_id, [])
+        cs = cs_attribute.get(traj_id, [])
+        combined = sta + cs
+        if len(combined) == 1:
+            return combined[0]
+        return combined
+        
+    trt_df['STA Speed'] = trt_df['traj_ID'].apply(combine_attributes)
 
     # Map the collected wind speeds to the 'STA Speed' column
-    trt_df['STA Speed'] = trt_df['traj_ID'].map(sta_speeds)
+    #trt_df['STA Speed'] = trt_df['traj_ID'].map(sta_speeds)
+    
 
     # Convert lists with a single element to just that element
-    trt_df['STA Speed'] = trt_df['STA Speed'].apply(lambda x: x[0] if isinstance(x, list) and len(x) == 1 else x)
+    #trt_df['STA Speed'] = trt_df['STA Speed'].apply(lambda x: x[0] if isinstance(x, list) and len(x) == 1 else x)
 
 
     # Create a new geometry column in trt_gdf based on lon and lat
@@ -712,13 +723,13 @@ def process_gust_markers(valid_date3, valid_time3, extraction_dir):
 
 
 # Define the date range
-start_date = datetime.strptime('2023-05-01', '%Y-%m-%d')
-end_date = datetime.strptime('2023-10-31', '%Y-%m-%d')  
+start_date = datetime.strptime('2020-05-01', '%Y-%m-%d')
+end_date = datetime.strptime('2020-10-31', '%Y-%m-%d')  
 time_delta = timedelta(minutes=5)
 
 # Define paths
 extraction_dir = "/scratch/mch/fackerma/orders/TRT_Unzip/"
-output_dir = "/scratch/mch/fackerma/orders/TRT_processing_3/2023"
+output_dir = "/scratch/mch/fackerma/orders/TRT_processing_3/2020"
 
 current_date = start_date
 while current_date <= end_date:
