@@ -217,12 +217,13 @@ valid_times = pd.to_datetime(extraction_dates['Valid_Time'], format='%Y%m%d%H%M%
 # 2. Load Merged DataFrame
 base_dir = "/scratch/mch/fackerma/orders/TRT_processing_3/"
 yearly_files = [
-    "TRT_2019_05-10.pkl",
-    "TRT_2020_05-10.pkl",
-    "TRT_2021_05-10.pkl",
-    "TRT_2022_05-10.pkl",
-    "TRT_2023_05-10.pkl",
+    "TRT_2019_05-10_new.pkl",
+    "TRT_2020_05-10_new.pkl",
+    "TRT_2021_05-10_new.pkl",
+    "TRT_2022_05-10_new.pkl",
+    "TRT_2023_05-10_new.pkl",
 ]
+
 
 dfs = []
 for file_name in yearly_files:
@@ -253,8 +254,9 @@ final_df = filtered_by_time[traj_filter].copy()
 print(f"Number of rows after traj_ID filtering: {final_df.shape[0]}")
 
 # 4. Process Data with calculate_metrics
-npz_base = '/scratch/mch/maregger/hailclass/convective_wind/full_composite_npz/'
-output_path = "/scratch/mch/fackerma/orders/TRT_modelsetup_3/Model_Setup_3_b.pkl"
+#npz_base = '/scratch/mch/maregger/hailclass/convective_wind/full_composite_npz/'
+npz_base ='/scratch/mch/fackerma/orders/npz_GT2/full_composite_npz/'
+output_path = "/scratch/mch/fackerma/orders/TRT_modelsetup_4/Model_Setup_4_new.pkl"
 
 # Group by timestamp for NPZ loading
 grouped = final_df.groupby('timestamp')

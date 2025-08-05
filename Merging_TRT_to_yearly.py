@@ -3,8 +3,8 @@ import pandas as pd
 from datetime import datetime
 import warnings
 
-base_dir = "/scratch/mch/fackerma/orders/TRT_processing_2/"
-output_template = "TRT_{year}_05-10.pkl"
+base_dir = "/scratch/mch/fackerma/orders/TRT_processing_3/"
+output_template = "TRT_{year}_05-10_new.pkl"
 
 def process_year(year):
     year_dir = os.path.join(base_dir, str(year))
