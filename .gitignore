@@ -11,4 +11,5 @@ wind_reports_2021_2023.json
 *.prj
 *.shp
 *.shx
-*.html
+*.htmlslurm/*.err
+*.err
